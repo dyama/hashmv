@@ -10,7 +10,7 @@ end
 
 ARGV.each do |src|
   if !File.exist? src
-    STDERR.puts "No such src: " + src
+    STDERR.puts "No such file: " + src
     next
   end
   osrc = src.gsub /\.\d+$/, ""
