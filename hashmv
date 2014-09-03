@@ -1,0 +1,32 @@
+#!/usr/bin/bin ruby
+
+require 'digest/md5'
+
+if ARGV.size == 0
+  puts "Hash renamer"
+  puts "usage: hashmv file"
+  exit
+end
+
+ARGV.each do |src|
+  if !File.exist? src
+    STDERR.puts "No such src: " + src
+    next
+  end
+  osrc = src.gsub /\.\d+$/, ""
+  osrc.gsub! /:\w+/, ""
+  dir, fname = File::split osrc
+  ext = File::extname osrc
+  bname = File::basename osrc, ext
+  nname = Digest::MD5.file(src).to_s.upcase
+  if bname == nname
+    next
+  end
+  dest = dir + "/" + nname + ext.downcase
+  puts "#{src} -> #{dest}"
+  # if File.exist? dest
+  #   STDERR.puts "Already file exists: " + dest
+  # end
+  File::rename src, dest
+end
+
