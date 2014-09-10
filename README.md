@@ -14,6 +14,8 @@ EXAMPLE
     $ hashmv foobar.jpg
     foobar.jpg -> ./D41D8CD98F00B204E9800998ECF8427E.jpg
 
+hashmv will overwrite file if same named file.
+
 DEPENDENCY
 ----------
 
